@@ -1,0 +1,6 @@
+<messaging:emailTemplate subject="Claim request processed" recipientType="Contact"  >
+<messaging:plainTextEmailBody >
+Dear {!recipient.Name},
+Your claim is approved. You will receive the approved amount in 3-5 days.
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>
