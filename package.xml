@@ -3,17 +3,45 @@
     <types>
         <members>Element_ClaimApprovedMailScheduler</members>
         <members>Element_GenerateSingleEmailMessage</members>
+        <members>Element_HandleCustomException</members>
+        <members>Element_PaymentDataCtrl</members>
+        <members>Element_PaymentHistoryParser</members>
         <members>Element_SendClaimApprovedMailToCustomer</members>
+        <members>Element_getPaymentHistory</members>
         <name>ApexClass</name>
     </types>
     <types>
+        <members>PaymentHistory</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>Case_Policy__c.Case__c</members>
+        <members>Case_Policy__c.Policy__c</members>
         <members>Contact.Claim_Approved_on__c</members>
         <members>Contact.Claim_Status__c</members>
+        <members>CustomException__c.ClassName__c</members>
+        <members>CustomException__c.Exception_Message__c</members>
+        <members>CustomException__c.Exception_Type__c</members>
+        <members>CustomException__c.Govt_Limit_in_Executing_Code__c</members>
+        <members>CustomException__c.Line_Number__c</members>
+        <members>CustomException__c.MethodName__c</members>
+        <members>CustomException__c.Related_To_Number__c</members>
+        <members>CustomException__c.StackTrace__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>Case_Policy__c</members>
+        <members>CustomException__c</members>
+        <members>Policy__c</members>
+        <name>CustomObject</name>
     </types>
     <types>
         <members>unfiled$public/Element_Claim_approved_notification</members>
         <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>Case_Record_Page</members>
+        <name>FlexiPage</name>
     </types>
     <types>
         <members>Contact</members>

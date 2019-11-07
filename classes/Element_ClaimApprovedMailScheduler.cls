@@ -5,6 +5,12 @@
 *******************/
 global class Element_ClaimApprovedMailScheduler implements Schedulable {
     global void execute(SchedulableContext ctx) {
-        Id JobId = Database.executeBatch(new Element_SendClaimApprovedMailToCustomer());
+    
+         try{
+            Id JobId = Database.executeBatch(new Element_SendClaimApprovedMailToCustomer());
+          } catch (Exception e) {
+            Element_HandleCustomException.LogException(e);
+        } 
+       
     }
 }
