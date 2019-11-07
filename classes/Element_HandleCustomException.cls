@@ -31,4 +31,20 @@ public class Element_HandleCustomException extends Exception {
                 database.insert(exc);            
                     
     } 
+    
+    //log api exception
+    public static void LogException(HTTPResponse res,string relatedToId,string methodName,string className)
+    {
+            //Log information in object
+                CustomException__c exc = new CustomException__c();
+                exc.Related_To_Number__c=relatedToId;
+                exc.Exception_Message__c = res.getBody();
+                exc.Exception_Type__c = string.valueOf(res.getStatuscode());
+               // exc.Line_Number__c = e.getLineNumber();
+               // exc.StackTrace__c = e.getStackTraceString();
+                exc.MethodName__c=methodName;
+                exc.ClassName__c=className;
+                database.insert(exc);            
+               
+    } 
 }

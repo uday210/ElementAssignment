@@ -1,5 +1,6 @@
 ({
     doInit: function(cmp, event, helper) {
+        cmp.set('v.loadingCompleted',false);
         cmp.set("v.columns", [
             { label: "Account Number", fieldName: "Account_Number", type: "text" },
             { label: "Payment Date", fieldName: "Payment_Date", type: "date" },
@@ -12,11 +13,13 @@
         ]);
         
         var action = cmp.get("c.getPaymentsData");
+        action.setParams({'relatedToId':cmp.get('v.recordId')});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 console.log("From server: ", response.getReturnValue());
                 cmp.set("v.data", response.getReturnValue());
+                cmp.set('v.loadingCompleted',true);
             } else if (state === "INCOMPLETE") {
                 // do something
             } else if (state === "ERROR") {
@@ -39,8 +42,7 @@
     handleSubmit: function(cmp, event, helper) {
         event.preventDefault();
         var eventFields = event.getParam("fields");
-        eventFields["Payment_history_Synced_On__c"] = new Date();
-        console.log(JSON.stringify(eventFields));
+        eventFields["Payment_history_Synced_On__c"] = new Date().toJSON();
         cmp.find("caseForm").submit(eventFields);
     },
     handleError:function(cmp, event, helper) {

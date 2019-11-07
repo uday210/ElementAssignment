@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>	ElementSendClaimApprovedMail_Test</members>
         <members>Element_ClaimApprovedMailScheduler</members>
         <members>Element_GenerateSingleEmailMessage</members>
         <members>Element_HandleCustomException</members>
         <members>Element_PaymentDataCtrl</members>
+        <members>Element_PaymentDataCtrlTest</members>
         <members>Element_PaymentHistoryParser</members>
         <members>Element_SendClaimApprovedMailToCustomer</members>
+        <members>Element_TestDataUtil</members>
         <members>Element_getPaymentHistory</members>
         <name>ApexClass</name>
     </types>
@@ -42,6 +45,10 @@
     <types>
         <members>Case_Record_Page</members>
         <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>StaticResource</name>
     </types>
     <types>
         <members>Contact</members>

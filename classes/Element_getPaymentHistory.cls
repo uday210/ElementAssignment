@@ -6,7 +6,7 @@
 public class Element_getPaymentHistory{
 
 
-    public static String getPaymentHistory(){
+    public static String getPaymentHistory(String relatedToId){
     
      try{
     
@@ -15,8 +15,12 @@ public class Element_getPaymentHistory{
         req.setMethod('GET');
         Http http = new Http();
         HTTPResponse res = http.send(req);
-        return res.getBody();
-        
+        if(res.getStatuscode()==200)
+            return res.getBody();
+        else{
+            //create custom error
+            Element_HandleCustomException.LogException(res,relatedToId,'getPaymentHistory','Element_getPaymentHistory');
+            } 
         } catch (Exception e) {
             Element_HandleCustomException.LogException(e);
         }

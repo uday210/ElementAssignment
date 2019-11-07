@@ -14,7 +14,6 @@ global class Element_SendClaimApprovedMailToCustomer implements Database.Batchab
     }
     global void execute(Database.BatchableContext bc, List<Contact> Customers){
         
-        try{
         // process each batch of records
         
         //get the email template
@@ -31,13 +30,15 @@ global class Element_SendClaimApprovedMailToCustomer implements Database.Batchab
         }
         if(!EmailMessages.isEmpty())
         {
+          try{
            Messaging.sendEmail(EmailMessages);
            //once the email is send update the customers (contacts)
+            } catch (Exception e) {
+            Element_HandleCustomException.LogException(e);
+            }  
            Database.update(Customers,false);
         }
-        } catch (Exception e) {
-            Element_HandleCustomException.LogException(e);
-        } 
+        
         
     }    
     global void finish(Database.BatchableContext bc){

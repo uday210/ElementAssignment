@@ -36,6 +36,9 @@ public class Element_PaymentHistoryParser {
     
     
     public static List<Element_PaymentHistoryParser> parse(String json) {
+        system.debug('json '+json);
+        if(json==null)
+            return null;
         System.JSONParser parser = System.JSON.createParser(json);
         return arrayOfElement_PaymentHistoryParser(parser);
     }

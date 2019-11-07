@@ -6,33 +6,40 @@
     <!-- attributes -->
     <aura:attribute name="data" type="Object" />
     <aura:attribute name="columns" type="List" />
-    
+    <aura:attribute name="loadingCompleted" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <div style="">
-    <lightning:recordEditForm
-                              onsuccess="{!c.handleSuccess}"
-                              recordId="{!v.recordId}"
-                              onsubmit="{!c.handleSubmit}"
-                              onerror="{!c.handleError}"
-                              objectApiName="Case"
-                              aura:id="caseForm"
-                              >
-        <lightning:outputField fieldName="Payment_history_Synced_On__c" />
-        <div style="display:none">
-        	<lightning:inputField fieldName="Payment_history_Synced_On__c" />
-        </div>
-        <lightning:button
-                          variant="brand"
-                          type="submit"
-                          name="Sync Payment History"
-                          label="Sync Payment History"
-                          />
-    </lightning:recordEditForm>
-    </div>    
-    <lightning:datatable
-                         keyField="id"
-                         data="{! v.data }"
-                         columns="{! v.columns }"
-                         hideCheckboxColumn="true"
-                         />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    
+    <aura:if isTrue="{!!v.loadingCompleted}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+        <aura:set attribute="else">
+            <div style="">
+                <lightning:recordEditForm
+                                          onsuccess="{!c.handleSuccess}"
+                                          recordId="{!v.recordId}"
+                                          onsubmit="{!c.handleSubmit}"
+                                          onerror="{!c.handleError}"
+                                          objectApiName="Case"
+                                          aura:id="caseForm"
+                                          >
+                    <lightning:outputField fieldName="Payment_history_Synced_On__c" />
+                    <div style="display:none">
+                        <lightning:inputField fieldName="Payment_history_Synced_On__c" />
+                    </div>
+                    <lightning:button
+                                      variant="brand"
+                                      type="submit"
+                                      name="Sync Payment History"
+                                      label="Sync Payment History"
+                                      />
+                </lightning:recordEditForm>
+            </div>
+            <lightning:datatable
+                                 keyField="id"
+                                 data="{! v.data }"
+                                 columns="{! v.columns }"
+                                 hideCheckboxColumn="true"
+                                 />
+        </aura:set>
+    </aura:if>
 </aura:component>
