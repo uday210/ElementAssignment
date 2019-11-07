@@ -3,6 +3,8 @@
 Use case 1 :
   1. using 'Contact' object as customers
   2. if we put USERId as 'setTargetObjectId' while sendng single email message it wont counts towards daily limit (so my assumption is each customer will bea community USER)
+
+
 Use case 2 :
   1. using 'Policy__c' custom object to store policies in SFDC
   2. using 'Case_Policy__c' custom junction object between CASE and Policy__c
