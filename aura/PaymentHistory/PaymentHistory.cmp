@@ -34,6 +34,7 @@
                                       />
                 </lightning:recordEditForm>
             </div>
+			<!--display data as table-->
             <lightning:datatable
                                  keyField="id"
                                  data="{! v.data }"
