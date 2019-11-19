@@ -12,15 +12,16 @@ public class Element_PaymentHistoryParser {
     public String Account_Number {get;set;} 
 
     public Element_PaymentHistoryParser(JSONParser parser) {
+    PaymentHistoryKeymapping__c PHKeys = PaymentHistoryKeymapping__c.getOrgDefaults();
         while (parser.nextToken() != System.JSONToken.END_OBJECT) {
             if (parser.getCurrentToken() == System.JSONToken.FIELD_NAME) {
                 String text = parser.getText();
                 if (parser.nextToken() != System.JSONToken.VALUE_NULL) {
-                    if (text == 'Payment Date') {
+                 if(text==PHKeys.Payment_Date__c){
                         Payment_Date = parser.getText();
-                    } else if (text == 'Amount') {
+                    } else if (text == PHKeys.Amount__c) {
                         Amount = parser.getText();
-                    } else if (text == 'Account Number') {
+                    } else if (text == PHKeys.Account_Number__c) {
                         Blob key = Crypto.generateAesKey(128);
                         Blob data = Blob.valueOf(parser.getText());
                         Account_Number = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV('AES128', key, data));//.toString();
